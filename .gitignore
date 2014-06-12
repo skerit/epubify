@@ -1,0 +1,37 @@
+# Ignore certain public folders
+app/public/views/*
+!app/public/views/empty
+
+# Ignore the contents of the temp folder
+temp/*
+
+# Except for the empty file
+!temp/empty
+
+# Ignore IDE specific files
+*.komodo*
+*.sublime*
+.idea/
+
+# Ignore special files
+.DS_Store
+.fuse*
+._*
+*.bin
+
+# Ignore log files
+npm-debug.log
+v8.log
+
+# Ignore uploaded files
+/files/
+
+# Ignore node modules
+/node_modules/
+
+# Ignore the local config
+app/config/local.js
+
+*.cbz
+*.epub
+*.cbr

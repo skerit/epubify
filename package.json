@@ -1,0 +1,11 @@
+{
+	"name": "cbpub",
+	"description": "Convert cbz to epub",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"alchemymvc": "git+https://github.com/skerit/alchemy.git#master",
+		"fs-sync": "0.2.4",
+		"rimraf": "2.2.8"
+	}
+}
