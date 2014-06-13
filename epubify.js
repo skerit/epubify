@@ -93,7 +93,7 @@ files.forEach(function(fileName, index) {
 							var source = edir + mainName + '.epub',
 							    target = __dirname + '/' + mainName + '.epub';
 
-							console.log('Converted ' + mainName.bold ' to ePub');
+							console.log('Converted ' + mainName.bold + ' to ePub');
 
 							alchemy.moveFile(source, target, function() {
 
