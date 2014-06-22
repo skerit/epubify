@@ -10,17 +10,22 @@ var async = alchemy.use('async'),
 var files = [];
 
 var mogrifyCmd = "mogrify ",
+    mogrifypng = "mogrify ",
     border = 0;
 
 // Trim out the white
 mogrifyCmd += "-fuzz 15% -trim +repage "
+mogrifypng = mogrifyCmd;
 
 // Add a border if wanted
 if (border) {
 	mogrifyCmd += '-border ' + border + ' ';
+	mogrifypng += '-border ' + border + ' ';
 }
 
 mogrifyCmd += "-bordercolor '#ffffff' -resize 1200x1600 -background white -gravity center -extent 1200x1600 *.jpg";
+mogrifypng += "-format jpg -bordercolor '#ffffff' -resize 1200x1600 -background white -gravity center -extent 1200x1600 *.png && rm *.png";
+
 
 for (var i = 2; i < process.argv.length; i++) {
 	files.push(process.argv[i]);
@@ -62,7 +67,9 @@ files.forEach(function(fileName, index) {
 
 			images.forEach(function(imageFile, i) {
 
-				var extension = imageFile.split('.').pop(),
+				//var extension = imageFile.split('.').pop(),
+				// We'll always convert to png
+				var extension = 'jpg',
 				    filename  = i + '.' + extension;
 
 				copyTasks[copyTasks.length] = function(copyDone) {
@@ -82,8 +89,16 @@ files.forEach(function(fileName, index) {
 
 			async.parallel(copyTasks, function() {
 
+				var mcmd;
+
+				if (fileName.toLowerCase().indexOf('.png') > 0) {
+					mcmd = mogrifypng;
+				} else {
+					mcmd = mogrifyCmd;
+				}
+
 				// Resize the files
-				exec(mogrifyCmd, {cwd: edir}, function() {
+				exec(mcmd, {cwd: edir}, function() {
 
 					// Add the mimetype file
 					exec('zip -X -0 "' + mainName + '.epub" mimetype', {cwd: edir}, function(err, result) {
