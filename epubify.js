@@ -20,7 +20,8 @@ if (border) {
 	mogrifyCmd += '-border ' + border + ' ';
 }
 
-mogrifyCmd += "-bordercolor '#ffffff' -resize 1200x1600 -background white -gravity center -extent 1200x1600 *.jpg";
+// Removed "-extent 1200x1600", we don't want any added borders
+mogrifyCmd += "-bordercolor '#ffffff' -resize 1200x1600 -background white -gravity center *.jpg";
 
 for (var i = 2; i < process.argv.length; i++) {
 	files.push(process.argv[i]);
