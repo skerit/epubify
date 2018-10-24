@@ -5,7 +5,7 @@
 	"private": true,
 	"dependencies": {
 		"alchemymvc": "git+https://github.com/skerit/alchemy.git#master",
-		"fs-sync": "0.2.4",
+		"fs-sync": "1.0.3",
 		"rimraf": "2.2.8"
 	}
 }
